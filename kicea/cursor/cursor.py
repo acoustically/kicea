@@ -1,5 +1,5 @@
 import sys
-from screen.screen import Screen
+from kicea.screen.screen import Screen
 
 class Cursor():
     x = 0
@@ -8,7 +8,7 @@ class Cursor():
     def move(x, y):
         Cursor.x = x
         Cursor.y = y
-        Screen.print("\033[" + str(x) + ";" + str(y) + "H")
+        Screen.print("\033[" + str(y) + ";" + str(x) + "H")
     
     def move_left(*x):
         if not x:
