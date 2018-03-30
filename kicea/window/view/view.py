@@ -18,3 +18,9 @@ class View(Window):
             else:   
                 raise Exception
     
+    def close(self):
+        for view in self.views:
+            if issubclass(type(view), Window):
+                view.close()
+            else:
+                raise Exception

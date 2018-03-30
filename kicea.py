@@ -16,7 +16,8 @@ text_box.set_background(255, 0, 0)
 view.add_view(text_box)
 print(text_box.parent)
 view.open()
-
+getch()
+view.close()
 
 key = getch()
 
