@@ -45,9 +45,9 @@ class TextBox(Window):
             self.__foreground = Color.foreground(args[0], args[1], args[2])
      
     def open(self):
-        super().open()
+        Cursor.move(super().location.x, super().location.y)
         if self.__foreground != -1:
-            Cursor.move(super().location.x, super().location.y)
-            Screen.print(self.__foreground + super().background + self.__text)
-            Color.reset()
-
+            Screen.print(super().background + self.__foreground + super().background + self.__text)
+        else:
+            Screen.print(super().background + self.__text)    
+        Color.reset()

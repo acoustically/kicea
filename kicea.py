@@ -2,31 +2,22 @@ from kicea import Cursor
 from kicea import Screen
 from kicea import Window, Location
 from kicea import TextBox
+from kicea import View
 from getch import getch
 import time
 import sys
 
 Screen.clear()
 screen_width, screen_height = Screen.size()
-window = Window(Location(10, 10), 20, 20)
-print(window)
-window.set_background(255, 0 ,0)
-window.open()
-key = getch()
-window.location = Location(20, 20)
-key = getch()
-window.width = 100
-getch()
-window.close()
-Cursor.move(1, 1)
-key = getch()
-text_box = TextBox(Location(20, 20), "test")
+
+view = View(Location(10, 10), 10, 10)
+text_box = TextBox(Location(10, 10), "test")
 text_box.set_background(255, 0, 0)
-text_box.set_text_color(0, 0, 255)
-text_box.open()
-key = getch()
-text_box.location = Location(10, 10)
-text_box.close()
+view.add_view(text_box)
+print(text_box.parent)
+view.open()
+
+
 key = getch()
 
 

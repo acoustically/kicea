@@ -17,6 +17,7 @@ class Window:
         self.__height = height
         self.__background = -1
         self.__keydown_listener = None            
+        self.__parent = None
 
     @property
     def location(self):
@@ -80,6 +81,14 @@ class Window:
             for i in range(self.__width):
                 blank += " "
             Screen.print(blank)
+   
+    def _set_parent(self, parent):
+        if issubclass(type(parent), Window):
+            self.__parent = parent
+    
+    @property
+    def parent(self):
+        return self.__parent
 
     @property
     def keydown_listener(self):
