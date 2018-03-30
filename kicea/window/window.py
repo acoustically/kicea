@@ -62,7 +62,7 @@ class Window:
         else:
             raise Exception
 
-    def open(self):
+    def _open(self):
         for j in range(self.__height):
             Cursor.move(self.__location.x, self.__location.y + j)
             blank = ""
@@ -74,7 +74,7 @@ class Window:
                 Screen.print(self.__background + blank)
             Color.reset()
         
-    def close(self):
+    def _close(self):
         for j in range(self.__height):
             Cursor.move(self.__location.x, self.__location.y + j)
             blank = ""
