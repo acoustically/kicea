@@ -1,4 +1,4 @@
-from kicea.cursor.cursor import Cursor
+from kicea.screen.cursor.cursor import Cursor
 from kicea.screen.screen import Screen
 from kicea.window.window import Window
 from kicea.window.window import Location

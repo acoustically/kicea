@@ -1,7 +1,7 @@
 from kicea.window.window import Window, Location
 from kicea.window.color import Color
 from kicea.screen.screen import Screen
-from kicea.cursor.cursor import Cursor
+from kicea.screen.cursor.cursor import Cursor
 
 class TextBox(Window):
     
@@ -9,6 +9,16 @@ class TextBox(Window):
         self.__foreground = -1
         self.__text = text
         super().__init__(location, len(text), 1)
+
+    @property  
+    def location(self):
+        return super().location
+
+    @location.setter
+    def location(self, location):
+        self.close()
+        super().location = location
+        self.open()
 
     @property
     def width(self):
@@ -18,7 +28,9 @@ class TextBox(Window):
     def width(self, width):
         if(len(text) < width):
             width = len(text)
+        self.close()
         super().width = width
+        self.open()
 
     @property
     def height(self):
@@ -38,3 +50,4 @@ class TextBox(Window):
             Cursor.move(super().location.x, super().location.y)
             Screen.print(self.__foreground + super().background + self.__text)
             Color.reset()
+

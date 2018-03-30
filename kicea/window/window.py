@@ -1,5 +1,5 @@
 from kicea.screen.screen import Screen
-from kicea.cursor.cursor import Cursor
+from kicea.screen.cursor.cursor import Cursor
 from kicea.window.color import Color
 
 class Location:
@@ -16,7 +16,8 @@ class Window:
         self.__width = width
         self.__height = height
         self.__background = -1
- 
+        self.__keydown_listener = None            
+
     @property
     def location(self):
         return self.__location
@@ -24,7 +25,9 @@ class Window:
     @location.setter
     def location(self, location):
         if(type(location) is Location):
+            self.close()
             self.__location = location
+            self.open()
 
     @property
     def width(self):
@@ -33,7 +36,10 @@ class Window:
     @width.setter
     def width(self, width):
         if(type(width) is int):
+            self.close()
             self.__width = width
+            self.open()
+
     @property
     def height(self):
         return self.__height
@@ -41,7 +47,9 @@ class Window:
     @height.setter
     def height(self, height):
         if(type(height) is int):
+            self.close()
             self.__height = height
+            self.open()
     
     @property
     def background(self):
@@ -59,7 +67,10 @@ class Window:
             blank = ""
             for i in range(self.__width):
                 blank += " "
-            Screen.print(self.__background + blank)
+            if self.__background == -1:
+                Screen.print(blank)
+            else:
+                Screen.print(self.__background + blank)
             Color.reset()
         
     def close(self):
@@ -69,7 +80,15 @@ class Window:
             for i in range(self.__width):
                 blank += " "
             Screen.print(blank)
-        
+
+    @property
+    def keydown_listener(self):
+        pass    
+
+    @keydown_listener.setter
+    def keydown_listener(self, keydown_listener):
+        self.__keydown_listener = keydown_listener
+
     def __repr__(self):
         return (self.__location.__repr__() 
                 + "\n<size width = " + str(self.__width) + " height = " + str(self.__height) + ">" 
