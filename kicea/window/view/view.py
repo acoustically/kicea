@@ -11,6 +11,9 @@ class View(Window):
         view._set_parent(self)
     
     def open(self):
+        self._open()
+
+    def _open(self):
         super()._open()
         for view in self.views:
             if issubclass(type(view), Window):
@@ -19,8 +22,13 @@ class View(Window):
                 raise Exception
     
     def close(self):
+        self._close()
+ 
+    def _close(self):
         for view in self.views:
             if issubclass(type(view), Window):
                 view._close()
             else:
                 raise Exception
+
+     

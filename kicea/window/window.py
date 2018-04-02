@@ -19,41 +19,34 @@ class Window:
         self.__keydown_listener = None            
         self.__parent = None
 
-    @property
-    def location(self):
+    def get_location(self):
         return self.__location
 
-    @location.setter
-    def location(self, location):
+    def set_location(self, location):
         if(type(location) is Location):
-            self.close()
+            self._close()
             self.__location = location
-            self.open()
+            self._open()
 
-    @property
-    def width(self):
+    def get_width(self):
         return self.__width
 
-    @width.setter
-    def width(self, width):
+    def set_width(self, width):
         if(type(width) is int):
-            self.close()
+            self._close()
             self.__width = width
-            self.open()
+            self._open()
 
-    @property
-    def height(self):
+    def get_height(self):
         return self.__height
     
-    @height.setter
-    def height(self, height):
+    def set_height(self, height):
         if(type(height) is int):
             self.close()
             self.__height = height
             self.open()
     
-    @property
-    def background(self):
+    def get_background(self):
         return self.__background
     
     def set_background(self, *args):
@@ -85,7 +78,10 @@ class Window:
     def _set_parent(self, parent):
         if issubclass(type(parent), Window):
             self.__parent = parent
-    
+
+    def get_parent(self):
+        return self.__parent    
+
     @property
     def parent(self):
         return self.__parent
